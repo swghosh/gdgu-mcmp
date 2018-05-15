@@ -25,7 +25,7 @@ var server = http.createServer((request, response) => {
         response.writeHead(200, {
             'Content-Type': 'text/html'
         })
-        fs.readFile(__dirname + 'htdocs/dynamicmap.html', 'utf8', (err, html) => {
+        fs.readFile(__dirname + '/htdocs/index.html', 'utf8', (err, html) => {
             if(err) {
                 response.end('Error')
                 return
@@ -49,7 +49,7 @@ var server = http.createServer((request, response) => {
             sensorDataRes.on('end', () => {
                 var jsCodeString = `var content = \'${jsonString}\';`
 
-                fs.readFile(__dirname + 'htdocs/maprender.js', 'utf8', (err, js) => {
+                fs.readFile(__dirname + '/htdocs/maprender.js', 'utf8', (err, js) => {
                     response.end(`${jsCodeString}\n${js}`)
                 })
             })
