@@ -1,1 +1,1 @@
-# gdgu-mcmp
+# Micro-climatic modelling project
