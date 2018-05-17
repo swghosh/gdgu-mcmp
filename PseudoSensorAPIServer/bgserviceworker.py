@@ -15,10 +15,19 @@ import json
 import time
 import os
 
-mongoHost = os.environ['MONGO_HOST']
-mongoUsername = os.environ['MONGO_USERNAME']
-mongoPassword = os.environ['MONGO_PASSWORD']
-mongoDbName = os.environ['MONGO_DB_NAME']
+authFile = open('authfile.json', 'r')
+authFileContents = ''
+
+for line in authFile:
+    authFileContents = authFileContents + line
+
+authParams = json.loads(authFileContents)
+
+mongoHost = str(authParams['mongoHost'])
+mongoUsername = str(authParams['mongoUsername'])
+mongoPassword = str(authParams['mongoPassword'])
+mongoDbName = str(authParams['mongoDbName'])
+
 mongoCollectionName = 'sensorData'
 
 apiHost = 'localhost'
@@ -27,7 +36,7 @@ apiURI = '/cgi-bin/api/sensorA'
 
 timeFrequency = 5 * 60
 
-mongoURL = 'mongodb://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
+mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
 apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
 timeFrequency = 5 * 60
 
@@ -39,7 +48,7 @@ while True:
 
     sensorData = json.loads(jsonRecvd)
 
-    db[mongoCollectionName]insert(sensorData)
+    db[mongoCollectionName].insert(sensorData)
 
     client.close()
 
