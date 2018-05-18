@@ -12,6 +12,7 @@ Python program to do the following (like a background script):
 import urllib2
 import pymongo
 import json
+import datetime
 import time
 import os
 
@@ -34,10 +35,9 @@ apiHost = 'localhost'
 apiPort = 5000
 apiURI = '/cgi-bin/api/sensorA'
 
-timeFrequency = 5 * 60
-
 mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
 apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
+
 timeFrequency = 5 * 60
 
 while True:
@@ -51,5 +51,7 @@ while True:
     db[mongoCollectionName].insert(sensorData)
 
     client.close()
+
+    print(str(datetime.datetime.now()) + ' - - [inserted to db collection] ' + str(sensorData))
 
     time.sleep(timeFrequency)
