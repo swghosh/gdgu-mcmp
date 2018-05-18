@@ -12,7 +12,7 @@
  * - timestamp of the data when sensors recorded the data (realtime).
 */
 
-const externalApiServerURL = 'http://localhost:5000/cgi-bin/api/sensorA'
+const externalApiServerURL = 'http://localhost:5000/api/sensorA'
 
 const http = require('http')
 const url = require('url')

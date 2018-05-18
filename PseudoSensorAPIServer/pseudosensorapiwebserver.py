@@ -3,7 +3,7 @@
 """
     Python program to run a simple HTTP web server capable of handling CGI scripts
         that serves files from the ./pywww directory and 
-        executable scripts over CGI from the ./pywww/cgi-bin directory
+        executable scripts over CGI from the ./pywww/api directory
 """
 
 import os
@@ -14,7 +14,10 @@ webroot = os.path.dirname(os.path.realpath(__file__)) + '/pywww'
 
 os.chdir(webroot)
 
-httpd = HTTPServer(('', port), CGIHTTPRequestHandler)
+handler = CGIHTTPRequestHandler
+handler.cgi_directories = ['/api']
+
+httpd = HTTPServer(('', port), handler)
 print('Web server running at port ' + str(httpd.server_port))
 
 httpd.serve_forever()

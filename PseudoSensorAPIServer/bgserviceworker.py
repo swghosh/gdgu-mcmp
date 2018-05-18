@@ -33,7 +33,7 @@ mongoCollectionName = 'sensorData'
 
 apiHost = 'localhost'
 apiPort = 5000
-apiURI = '/cgi-bin/api/sensorA'
+apiURI = '/api/sensorA'
 
 mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
 apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
