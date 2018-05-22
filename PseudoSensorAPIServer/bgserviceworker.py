@@ -16,7 +16,7 @@ import datetime
 import time
 import os
 
-authFile = open('authfile.json', 'r')
+authFile = open(os.path.dirname(__file__) + 'authfile.json', 'r')
 authFileContents = ''
 
 for line in authFile:
@@ -41,17 +41,22 @@ apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
 timeFrequency = 5 * 60
 
 while True:
-    client = pymongo.MongoClient(mongoURL)
-    db = client[mongoDbName]
+    try:
+        client = pymongo.MongoClient(mongoURL)
 
-    jsonRecvd = urllib2.urlopen(apiURL).read()
+        db = client[mongoDbName]
 
-    sensorData = json.loads(jsonRecvd)
+        jsonRecvd = urllib2.urlopen(apiURL).read()
 
-    db[mongoCollectionName].insert(sensorData)
+        sensorData = json.loads(jsonRecvd)
 
-    client.close()
+        db[mongoCollectionName].insert(sensorData)
 
-    print(str(datetime.datetime.now()) + ' - - [inserted to db collection] ' + str(sensorData))
+        client.close()
+
+        print(str(datetime.datetime.now()) + ' - - [inserted to db collection] ' + str(sensorData))
+
+    except:
+        print(str(datetime.datetime.now()) + ' - - [error occured] ' + '\nRetrying in ' + str(timeFrequency) + ' seconds.')
 
     time.sleep(timeFrequency)
