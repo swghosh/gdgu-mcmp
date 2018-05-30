@@ -16,7 +16,7 @@ import datetime
 import time
 import os
 
-authFile = open(os.path.dirname(__file__) + 'authfile.json', 'r')
+authFile = open(os.path.join(os.path.dirname(__file__), 'authfile.json'), 'r')
 authFileContents = ''
 
 for line in authFile:
@@ -31,9 +31,9 @@ mongoDbName = str(authParams['mongoDbName'])
 
 mongoCollectionName = 'sensorData'
 
-apiHost = 'localhost'
-apiPort = 5000
-apiURI = '/api/sensorA'
+apiHost = 'swghosh.pythonanywhere.com'
+apiPort = 80
+apiURI = '/gdgu-mcmp/api/sensorA'
 
 mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
 apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
