@@ -38,12 +38,14 @@ var server = http.createServer((request, response) => {
 
     }
     else if(requestUri.pathname == '/maprender.js') {
-        response.writeHead(200, {
-            'Content-Type': 'application/javascript'
-        })
 
         // make request to externalApiServer for sensor data
         var sensorDataRequest = http.get(externalApiServerURL, (sensorDataRes) => {
+
+            response.writeHead(200, {
+                'Content-Type': 'application/javascript'
+            })
+
             var jsonString = ''
             sensorDataRes.on('data', (chunk) => {
                 jsonString += chunk
@@ -55,6 +57,16 @@ var server = http.createServer((request, response) => {
                     response.end(`${jsCodeString}\n${js}`)
                 })
             })
+        })
+
+        sensorDataRequest.on('error', (err) => {
+            console.log(err)
+
+            response.writeHead(503, {
+                'Content-Type': 'application/javascript'
+            })
+
+            response.end()
         })
     }
     else {
