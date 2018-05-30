@@ -36,7 +36,12 @@ apiPort = 80
 apiURI = '/gdgu-mcmp/api/sensorA'
 
 mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
-apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
+
+# http urls that contain port 80 in it fails in urllib2, appropriate fix
+if not apiPort == 80:
+    apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
+else:
+    apiURL = 'http://' + apiHost + apiURI
 
 timeFrequency = 5 * 60
 
