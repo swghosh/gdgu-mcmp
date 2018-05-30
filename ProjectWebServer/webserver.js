@@ -12,7 +12,9 @@
  * - timestamp of the data when sensors recorded the data (realtime).
 */
 
-const externalApiServerURL = 'http://localhost:5000/api/sensorA'
+const httpPort = process.env.PORT || 5000
+
+const externalApiServerURL = 'http://swghosh.pythonanywhere.com/gdgu-mcmp/api/sensorA'
 
 const http = require('http')
 const url = require('url')
@@ -63,6 +65,6 @@ var server = http.createServer((request, response) => {
     }
 })
 
-server.listen(7090)
+server.listen(httpPort)
 
-console.log('web server started at 7090 that will render maps')
+console.log('web server started at ' + httpPort + ' that will render maps')
