@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" type="text/css" href="basic.css" />
+        <link rel="stylesheet" type="text/css" href="map.css" />
     </head>
     <body>
         <div class="top">
@@ -18,12 +19,9 @@
             </div>
         </div>
         <div class="content">
-            <ul class="mainmenu">
-                <a href="realtimefeed.html"><li>Realtime Feed</li></a>
-                <a href="#"><li>Archived Data</li></a>
-                <a href="#"><li>Query Data</li></a>
-                <a href="#"><li>Browse Stations</li></a>
-            </ul>
+            <div id="map"></div>
+            <script src="maprender.js"></script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8BuHmYW4Ky_wPScEnlwAdQ52nxDnLYpI&v=3&callback=initMap"></script>
         </div>
         <div class="foot">
             &copy; GD Goenka University, 2018.<br>

@@ -51,7 +51,6 @@ sup.badge {
 div.content {
     min-height: 80vh;
     padding: 5%;
-    z-index: -1;
 }
 div.content.nonzeroscroll {
     margin-top: 9em;
