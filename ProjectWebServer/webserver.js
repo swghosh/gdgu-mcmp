@@ -1,82 +1,82 @@
 #!/usr/bin/env node
 
-/* 
- * A sample application built on node.js that works as a web server
- * to render maps using the GMaps API
- * based upon data parsed from an external server from where the data is received.
- * The external API server is contacted by means of HTTP GET requests.
- * 
- * The external server furnishes the web application with data like:
- * - latitude, longitude co-ordinates of a place;
- * - certain key (paramater), value pairs of data from sensors;
- * - timestamp of the data when sensors recorded the data (realtime).
-*/
+var http = require('http')
+var fs = require('fs')
+var path = require('path')
+var url = require('url')
 
-const httpPort = process.env.PORT || 5000
+const port = process.env.port || 5000
+const webroot = path.join(__dirname, 'htdocs')
+const mimeTypes = {
+    '.html': 'text/html',
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.txt': 'text/plain',
+    '.json': 'application/json',
+    '.jpg': 'image/jpg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.wav': 'audio/wav',
+    '.mp3': 'audio/mp3',
+    '.mp4': 'video/mp4',
+    'other': 'application/octet-stream'
+}
 
-const externalApiServerURL = 'http://swghosh.pythonanywhere.com/gdgu-mcmp/api/sensorA'
+var printWithTime = (message, error) => {
+    var timedMessage = `[${new Date().toDateString()} ${new Date().toTimeString()}] : ${message}`
 
-const http = require('http')
-const url = require('url')
-const fs = require('fs')
-
-var server = http.createServer((request, response) => {
-    var requestUri = url.parse(request.url)
-
-    if(requestUri.pathname == '/') {
-        response.writeHead(200, {
-            'Content-Type': 'text/html'
-        })
-        fs.readFile(__dirname + '/htdocs/index.html', 'utf8', (err, html) => {
-            if(err) {
-                response.end('Error')
-                return
-            }
-
-            response.end(html)
-        })
-
-    }
-    else if(requestUri.pathname == '/maprender.js') {
-
-        // make request to externalApiServer for sensor data
-        var sensorDataRequest = http.get(externalApiServerURL, (sensorDataRes) => {
-
-            response.writeHead(200, {
-                'Content-Type': 'application/javascript'
-            })
-
-            var jsonString = ''
-            sensorDataRes.on('data', (chunk) => {
-                jsonString += chunk
-            })
-            sensorDataRes.on('end', () => {
-                var jsCodeString = `var content = \'${jsonString}\';`
-
-                fs.readFile(__dirname + '/htdocs/maprender.js', 'utf8', (err, js) => {
-                    response.end(`${jsCodeString}\n${js}`)
-                })
-            })
-        })
-
-        sensorDataRequest.on('error', (err) => {
-            console.log(err)
-
-            response.writeHead(503, {
-                'Content-Type': 'application/javascript'
-            })
-
-            response.end()
-        })
+    if(error) {
+        console.error(timedMessage)
     }
     else {
-        response.writeHead(404, {
-            'Content-Type': 'text/plain'
-        })
-        response.end('Resource not found. (error)')
+        console.log(timedMessage)
     }
+}
+
+var webServer = http.createServer((request, response) => {
+    var requestBody = ''
+
+    request.on('data', (chunk) => {
+        if(requestBody.length > 1e6) request.connection.destroy()
+        else requestBody += chunk
+    })
+
+    request.on('end', () => {
+        prepareForResponse(request, response, requestBody)
+    })
+
+    request.on('error', (err) => {
+        printWithTime('request error', true)
+    })
 })
 
-server.listen(httpPort)
+var prepareForResponse = (request, response, requestBody) => {
+    printWithTime(`${request.url} was requested`)
 
-console.log('web server started at ' + httpPort + ' that will render maps')
+    var uri = url.parse(path.normalize(request.url))
+
+    if(uri.pathname == '/') {
+        uri.pathname = '/index.html'
+    }
+
+    var filePath = path.join(webroot, uri.pathname)
+    var fileExtension = path.extname(filePath)
+    
+    var contentType = mimeTypes[fileExtension] || mimeTypes['other']
+
+    fs.readFile(filePath, (error, fileContent) => {
+        if(error) {
+            contentType = mimeTypes['.txt']
+            fileContent = 'This is not the page that you are looking for. Its a 4 zero 4 error.'
+        }
+
+        response.writeHead(200, {
+            'Content-Type': contentType,
+            'Content-Length': fileContent.length
+        })
+        response.end(fileContent, 'utf-8')
+    })
+}
+
+webServer.listen(port)
+printWithTime(`web server now running at port ${port}`)

@@ -1,3 +1,4 @@
+var content = '{"timestamp": "2018-06-03T13:35:18.591560", "latitude": 28.2699415, "longitude": 77.0636767, "sensorChannel": "sensorA", "sensorData": {"parameter1": 49, "parameter2": 963}}';
 content = JSON.parse(content);
 
 function parseRecord(content) {
