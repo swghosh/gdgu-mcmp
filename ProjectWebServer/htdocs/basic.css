@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+.nouline {
+    text-decoration: none;
+}
+.ulineonhover:hover {
+    text-decoration: underline;
+}
+.defaultcolor {
+    color: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato';
+}
+div.top {
+    font-family: 'Lato';
+    font-size: 2em;
+    box-shadow: 0 0 20px #888;
+    min-width: 100%;
+    z-index: 10;
+    background-color: #fff;
+    transition: all 0.5s;
+}
+div.top div.in {
+    font-size: 1em;
+    margin: 0;
+    padding: 2em;
+}
+div.top.nonzeroscroll {
+    position: fixed;
+    top: 0;
+}
+div.top.smaller {
+    font-size: 1.1em;
+}
+
+div.citation {
+    font-size: 0.5em;
+    color: #888;
+    padding: 1%;
+}
+sup.badge {
+    background-color: #088;
+    color: #fff;
+    padding: 0.3em;
+    font-size: 0.4em;
+    border-radius: 0.3em;
+}
+
+div.content {
+    min-height: 80vh;
+    padding: 5%;
+    z-index: -1;
+}
+div.content.nonzeroscroll {
+    margin-top: 9em;
+}
+
+div.foot {
+    box-shadow: 0 0 10px #888;
+    padding: 3.5%;
+    background-color: #fff;
+}
+
+ul.mainmenu {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+ul.mainmenu li {
+    transition: all 0.5s;
+    display: inline-block;
+    font-size: 1.5em;
+    padding: 1em;
+    margin: 1em;
+    color: #fff;
+    background-color: #20b2aa;
+    width: 30%;
+    box-shadow: 0 0 10px #888;
+}
+ul.mainmenu li:hover {
+    border-right: 1em solid teal;
+}

@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            html,
-            body {
-                font-family: Arial, sans-serif;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
+        <title>GD Goenka University Environmental Network</title>
 
-            #map {
-                height: 100%;
-            }
-        </style>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="basic.css" />
     </head>
     <body>
-        <div id="map"></div>
-        <script src="maprender.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8BuHmYW4Ky_wPScEnlwAdQ52nxDnLYpI&v=3&callback=initMap"></script>
+        <div class="top">
+            <div class="in">
+                GD Goenka University Environmental Network <sup class="badge">beta</sup>
+                <div class="citation">
+                    <a class="nouline defaultcolor ulineonhover" href="https://github.com/swghosh/gdgu-mcmp">gdgu-mcmp</a> 
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <ul class="mainmenu">
+                <a href="#"><li>Realtime Feed</li></a>
+                <a href="#"><li>Archived Data</li></a>
+                <a href="#"><li>Query Data</li></a>
+                <a href="#"><li>Browse Stations</li></a>
+            </ul>
+        </div>
+        <div class="foot">
+            &copy; GD Goenka University, 2018.<br>
+            <small><a class="nouline defaultcolor ulineonhover" href="https://github.com/swghosh/gdgu-mcmp">gdgu-mcmp</a>, open source project hosted on GitHub.</small>
+            <br><br>
+        </div>
     </body>
-
+    <script src="scrollfix.js"></script>
 </html>
