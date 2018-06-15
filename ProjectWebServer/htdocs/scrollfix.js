@@ -4,7 +4,7 @@ var divContent = document.querySelector('div.content')
 var nonZeroScroll = false
 
 var nonZeroScrollTopBar = function() {
-    if(document.body.scrollTop > 0) {
+    if(window.pageYOffset > 0) {
         if(!nonZeroScroll) {
             divTop.classList.add('nonzeroscroll')
             divTop.classList.add('smaller')
