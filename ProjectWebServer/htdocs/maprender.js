@@ -17,7 +17,8 @@ function initMap() {
             lat: content.latitude,
             lng: content.longitude
         },
-        zoom: 13
+        zoom: 13,
+        mapTypeId: 'terrain'
     });
 
     var place = {
