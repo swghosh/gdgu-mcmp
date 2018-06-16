@@ -34,7 +34,7 @@ const mimeTypes = {
     '.wav': 'audio/wav',
     '.mp3': 'audio/mp3',
     '.mp4': 'video/mp4',
-    'other': 'application/octet-stream'
+    '.bin': 'application/octet-stream'
 }
 
 // function will print message with date and time to console (log, error) based on boolean argument error
@@ -121,7 +121,7 @@ var prepareForResponse = (request, response, requestBody) => {
         var fileExtension = path.extname(filePath)
         
         // get a suitable mime type
-        var contentType = mimeTypes[fileExtension] || mimeTypes['other']
+        var contentType = mimeTypes[fileExtension] || mimeTypes['.bin']
 
         // read the file
         fs.readFile(filePath, (error, fileContent) => {
