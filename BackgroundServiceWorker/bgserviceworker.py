@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """ 
 Python program to do the following (like a background script):
@@ -9,10 +9,10 @@ Python program to do the following (like a background script):
     * repeat the process after a fixed time interval until SIGKILL 
 """
 
-import urllib2
-import pymongo
+from urllib import request
+from pymongo import MongoClient
 import json
-import datetime
+from datetime import datetime
 import time
 import os
 
@@ -47,11 +47,11 @@ timeFrequency = 5 * 60
 
 while True:
     try:
-        client = pymongo.MongoClient(mongoURL)
+        client = MongoClient(mongoURL)
 
         db = client[mongoDbName]
 
-        jsonRecvd = urllib2.urlopen(apiURL).read()
+        jsonRecvd = request.urlopen(apiURL).read().decode('utf-8')
 
         sensorData = json.loads(jsonRecvd)
 
@@ -59,9 +59,9 @@ while True:
 
         client.close()
 
-        print(str(datetime.datetime.now()) + ' - - [inserted to db collection] ' + str(sensorData))
+        print(str(datetime.now()) + ' - - [inserted to db collection] ' + str(sensorData))
 
-    except:
-        print(str(datetime.datetime.now()) + ' - - [error occured] ' + '\nRetrying in ' + str(timeFrequency) + ' seconds.')
+    except Exception as exception:
+        print(str(datetime.now()) + ' - - [error occured] ' + '\nRetrying in ' + str(timeFrequency) + ' seconds.', exception)
 
     time.sleep(timeFrequency)
