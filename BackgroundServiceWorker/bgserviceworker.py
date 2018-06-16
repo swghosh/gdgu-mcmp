@@ -37,7 +37,7 @@ apiURI = '/gdgu-mcmp/api/sensorA'
 
 mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
 
-# http urls that contain port 80 in it fails in urllib2, appropriate fix
+# http urls that contain port 80 explicitly in it fails when urllib.request.urlopen(URL), appropriate fix
 if not apiPort == 80:
     apiURL = 'http://' + apiHost + ':' + str(apiPort) + apiURI
 else:
