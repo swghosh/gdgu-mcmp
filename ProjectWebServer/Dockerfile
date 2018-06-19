@@ -1,9 +1,10 @@
 FROM node:carbon
-# create application directory
+# Create app directory
 WORKDIR /usr/src/app
-# install app dependencies
+# Install app dependencies
 COPY package*.json ./
-# bundle app source
+RUN npm install
+# Bundle app source
 COPY . .
-# run the web app 
+# Start the app
 CMD ["npm", "start"]

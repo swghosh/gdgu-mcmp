@@ -15,6 +15,7 @@ import json
 from datetime import datetime
 import time
 import os
+import sys
 
 authFile = open(os.path.join(os.path.dirname(__file__), 'authfile.json'), 'r')
 authFileContents = ''
@@ -62,6 +63,6 @@ while True:
         print(str(datetime.now()) + ' - - [inserted to db collection] ' + str(sensorData))
 
     except Exception as exception:
-        print(str(datetime.now()) + ' - - [error occured] ' + '\nRetrying in ' + str(timeFrequency) + ' seconds.', exception)
+        print(str(datetime.now()) + ' - - [error occured] ' + '\nRetrying in ' + str(timeFrequency) + ' seconds.', exception, file = sys.stderr)
 
     time.sleep(timeFrequency)
