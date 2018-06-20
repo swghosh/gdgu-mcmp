@@ -27,6 +27,7 @@ function initMap() {
     var marker = new google.maps.Marker({
         position: place,
         map: map,
+        icon: '/droneicon.png',
         title: "GD Goenka University"
     });
 

@@ -20,7 +20,7 @@ var url = require('url')
 
 // constants defining the port, webroot directory, dynamics directory, mime types
 const port = process.env.PORT || 5000
-const webroot = path.join(__dirname, 'htdocs')
+const webroot = path.join(__dirname, 'static')
 const dynamics = path.join(__dirname, 'dynamics')
 const mimeTypes = {
     '.html': 'text/html',

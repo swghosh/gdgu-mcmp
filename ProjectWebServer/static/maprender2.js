@@ -2,7 +2,7 @@ var places = palmTreeCoordinates()
 
 var map, markers = [], infoWindows = [];
 
-const markerIcon = '//maps.google.com/mapfiles/ms/icons/blue-dot.png'
+const markerIcon = '/droneicon.png'
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {

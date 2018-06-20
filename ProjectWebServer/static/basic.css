@@ -52,7 +52,7 @@ sup.badge {
 
 div.content {
     min-height: 80vh;
-    padding: 5%;
+    padding: 1%;
 }
 div.content.nonzeroscroll {
     margin-top: 9em;
@@ -84,4 +84,8 @@ ul.mainmenu li {
 }
 ul.mainmenu li:hover {
     border-right: 1em solid teal;
+}
+
+#map {
+    min-height: 80vh;
 }
