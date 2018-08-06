@@ -35,12 +35,3 @@ def mockedSensor(sensorChannel):
         }
     }
     return mock
-
-def do(sensorChannel):
-    print('Content-Type: application/json', end='\r\n\r\n')
-    jsonString = json.dumps(mockedSensor(sensorChannel))
-    print(
-        json.dumps(
-            mockedSensor(sensorChannel)
-        ), end = ''
-    )
