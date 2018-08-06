@@ -15,10 +15,13 @@ except:
 
 def application(environment, start_response):
     status = '200 OK'
-    body = json.dumps(sensors.mockedSensor({
-        'name': 'SOIL-MOIST-SENSOR',
-        'id': 'x-channel'
-    }))
+    body = json.dumps([sensors.mockedSensor({
+        'name': 'GROUND-QUAL-SENSORS',
+        'id': 'g-channel'
+    }, ['soilMoist']), sensors.mockedSensor({
+        'name': 'AIR-QUAL-SENSORS',
+        'id': 'h-channel'
+    }, ['coTwoConc'])])
     
     headers = [
         ('Server', 'EnvySensorNet/1.0'),

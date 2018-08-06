@@ -14,24 +14,28 @@ Python module containing the following functions:
         and print a json string of the dictionary containing sensor data generated using mockedSensor
 """
 
-import datetime
+from datetime import datetime
 import json
-import random
+from random import random
 
 gdguCoordinates = {
     'lat': 28.2699415,
     'lng': 77.0636767
 }
 
-def mockedSensor(sensorChannel):
+def mockedSensor(sensorChannel, parameters):
     mock = {
-        'timestamp': str(datetime.datetime.now().isoformat()),
+        'timestamp': str(datetime.now().isoformat()),
         'latitude': gdguCoordinates['lat'],
         'longitude': gdguCoordinates['lng'],
         'sensorChannel': sensorChannel,
-        'sensorData': {
-            'parameter1': int(random.random() * 60),
-            'parameter2': int(random.random() * 1000)
-        }
+        'sensorData': dict(
+            map(lambda parameter: (parameter, {
+                'value': int(random() * 1000),
+                'unit': 'mg/dL'
+            }), parameters)
+        )
     }
     return mock
+
+enumerate
