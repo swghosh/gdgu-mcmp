@@ -5,13 +5,25 @@ Python module containing the following functions:
     * mockedSensor function to generate a dictionary of sensor data
         of the format:
         { 
-            timestamp: isoDateString, latitude: coordinate, longitude: coordinate, sensorChannel: channelIdString,
+            timestamp: isoDateString, latitude: coordinate, longitude: coordinate, 
+            sensorChannel: {
+                name: nameString,
+                id: idString
+            },
             senorData: {
-                parameter1: value1, parameter2: value2, ..., parameterN: valueN
+                parameter1: {
+                    value: numericValue1,
+                    unit: unitString1
+                }, parameter2: {
+                    value: numericValue2,
+                    unit: unitString2
+                }, ..., parameterN: {
+                    value: numericValueN,
+                    unit: unitStringN
+                }
             }
         }
-    * do function will print a line of 'Content-Type: application/json' for CGI 
-        and print a json string of the dictionary containing sensor data generated using mockedSensor
+    the dictionary can safely be converted into JSON in order
 """
 
 from datetime import datetime
