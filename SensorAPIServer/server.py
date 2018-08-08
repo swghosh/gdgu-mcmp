@@ -21,7 +21,7 @@ def application(environment, start_response):
     }, ['soilMoist']), sensors.mockedSensor({
         'name': 'AIR-QUAL-SENSORS',
         'id': 'h-channel'
-    }, ['coTwoConc'])])
+    }, ['coTwoConc'])], indent = 4)
     
     headers = [
         ('Server', 'EnvySensorNet/1.0'),

@@ -23,7 +23,7 @@ Python module containing the following functions:
                 }
             }
         }
-    the dictionary can safely be converted into JSON in order
+    the dictionary can safely be converted into JSON in order to be used for information interchange
 """
 
 from datetime import datetime
