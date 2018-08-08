@@ -34,7 +34,7 @@ mongoCollectionName = 'sensorData'
 
 apiHost = 'swghosh.pythonanywhere.com'
 apiPort = 80
-apiURI = '/gdgu-mcmp/api/sensorA'
+apiURI = '/gdgu-mcmp/api/sensorData'
 
 mongoURL = 'mongodb+srv://' + mongoUsername + ':' + mongoPassword + '@' + mongoHost + '/' + mongoDbName
 
@@ -56,7 +56,7 @@ while True:
 
         sensorData = json.loads(jsonRecvd)
 
-        db[mongoCollectionName].insert(sensorData)
+        db[mongoCollectionName].insert_many(sensorData)
 
         client.close()
 
