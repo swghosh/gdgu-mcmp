@@ -2,7 +2,7 @@ var xhttp = new XMLHttpRequest()
 xhttp.open("GET", "livesensordata.dyn.json", false)
 xhttp.send()
 
-var content = JSON.parse(xhttp.responseText);
+var content = JSON.parse(xhttp.responseText)[0];
 
 function parseRecord(content) {
     var timestamp = new Date(content.timestamp);

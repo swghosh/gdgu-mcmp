@@ -1,6 +1,6 @@
 var http = require('http')
 
-const apiURL = 'http://swghosh.pythonanywhere.com/gdgu-mcmp/api/sensorA'
+const apiURL = 'http://swghosh.pythonanywhere.com/gdgu-mcmp/api/sensorData'
 
 exports.serve = (request, response) => {
     var content = ''
