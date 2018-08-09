@@ -44,7 +44,8 @@ if not apiPort == 80:
 else:
     apiURL = 'http://' + apiHost + apiURI
 
-timeFrequency = 5 * 60
+# setting time frequency to 10 seconds for testing purposes
+timeFrequency = 10
 
 while True:
     try:
