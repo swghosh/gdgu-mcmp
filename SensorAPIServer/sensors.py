@@ -49,5 +49,3 @@ def mockedSensor(sensorChannel, parameters):
         )
     }
     return mock
-
-enumerate
