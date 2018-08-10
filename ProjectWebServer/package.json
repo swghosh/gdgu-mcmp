@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/swghosh/gdgu-mcmp/issues"
   },
-  "homepage": "https://github.com/swghosh/gdgu-mcmp#readme"
+  "homepage": "https://github.com/swghosh/gdgu-mcmp#readme",
+  "dependencies": {
+    "mongodb": "^3.1.1"
+  }
 }
