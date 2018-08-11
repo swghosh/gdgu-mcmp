@@ -7,4 +7,4 @@ RUN python3 -m pip install -r requirements.txt
 # bundle app source
 COPY . .
 # start the app
-CMD ["python3", "sensordatalogger.py"]
+CMD ["python3", "logger.py"]
