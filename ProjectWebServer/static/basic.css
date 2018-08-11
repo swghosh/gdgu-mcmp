@@ -89,3 +89,12 @@ ul.mainmenu li:hover {
 #map {
     min-height: 80vh;
 }
+
+div.chartholder {
+    padding: 5%;
+    min-height: 80vh;
+}
+
+#chart {
+    min-height: 80vh;
+}

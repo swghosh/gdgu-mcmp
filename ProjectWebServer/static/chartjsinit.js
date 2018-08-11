@@ -12,7 +12,7 @@ var chartGenerate = function(idLabel, labels, values) {
                 label: idLabel,
                 data: values, // values with different prices of fluctuations
                 backgroundColor: "rgba(100, 100, 100, 0.1)",
-                borderColor: "#679"
+                borderColor: "#077"
             }]
         }
     });
