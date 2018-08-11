@@ -5,7 +5,7 @@
   "main": "webserver.js",
   "scripts": {
     "start": "node webserver.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "heroku container:push web --app gdgu-env-net && heroku container:release web --app gdgu-env-net"
   },
   "repository": {
     "type": "git",
