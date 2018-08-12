@@ -26,6 +26,8 @@ exports.serve = (request, response) => {
             var db = dbL.db()
             db.collection(collectionName).find({
                 'sensorChannel.name': "GROUND-QUAL-SENSORS"
+            }).sort({
+                timestamp: -1
             }).limit(arrayLimit).toArray((err, documents) => {
                 dbL.close()
 
