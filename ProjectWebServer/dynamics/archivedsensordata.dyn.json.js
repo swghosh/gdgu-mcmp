@@ -31,6 +31,9 @@ exports.serve = (request, response) => {
             }).limit(arrayLimit).toArray((err, documents) => {
                 dbL.close()
 
+                // sort documents ascending based on timestamp property
+                documents = documents.sort((itemA, itemB) => itemA.timestamp.localeCompare(itemB.timestamp))
+
                 // pretty JSON with 4 spaces for each block indentation
                 // also, remove objectId before emitting json
                 content = JSON.stringify(documents.map((document) => {
