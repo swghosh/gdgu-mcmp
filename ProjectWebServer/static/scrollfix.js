@@ -4,24 +4,22 @@ var divContent = document.querySelector('div.content')
 var nonZeroScroll = false
 
 var nonZeroScrollTopBar = function() {
-    if(window.pageYOffset > 0) {
-        if(!nonZeroScroll) {
-            divTop.classList.add('nonzeroscroll')
-            divTop.classList.add('smaller')
-            divContent.classList.add('nonzeroscroll')
+    if(!nonZeroScroll) {
+        divTop.classList.add('nonzeroscroll')
+        divTop.classList.add('smaller')
+        divContent.classList.add('nonzeroscroll')
 
-            nonZeroScroll = true            
-        }
+        nonZeroScroll = true            
     }
-    else {
-        if(nonZeroScroll) {
-            divTop.classList.remove('nonzeroscroll')
-            divTop.classList.remove('smaller')
-            divContent.classList.remove('nonzeroscroll')
+    // else {
+    //     if(nonZeroScroll) {
+    //         divTop.classList.remove('nonzeroscroll')
+    //         divTop.classList.remove('smaller')
+    //         divContent.classList.remove('nonzeroscroll')
 
-            nonZeroScroll = false            
-        }          
-    }
+    //         nonZeroScroll = false            
+    //     }          
+    // }
 }
 
 document.addEventListener('scroll', nonZeroScrollTopBar)

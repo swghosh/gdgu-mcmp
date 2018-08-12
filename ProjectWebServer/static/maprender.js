@@ -1,7 +1,7 @@
 let content = []
 
 var xhttp = new XMLHttpRequest()
-xhttp.open("GET", "livesensordata.dyn.json", false)
+xhttp.open("GET", "livesensordata.dyn.json", true)
 
 xhttp.onreadystatechange = function() {
     if(this.readyState == 4 && this.status == 200) {
