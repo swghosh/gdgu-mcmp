@@ -1,13 +1,10 @@
-let content = []
-
 var xhttp = new XMLHttpRequest()
-xhttp.open("GET", "livesensordata.dyn.json", true)
+xhttp.open("GET", "livesensordata.dyn.json", false)
 
-xhttp.onreadystatechange = function() {
-    if(this.readyState == 4 && this.status == 200) {
-        content = makeContent()
-    }
-}
+// xhttp.onreadystatechange = function() {
+//     if(this.readyState == 4 && this.status == 200) {
+//     }
+// }
 xhttp.send()
 
 function makeContent() {
@@ -22,6 +19,8 @@ function makeContent() {
         longitude: items[0].longitude
     }
 }
+
+let content = makeContent()
 
 function parseRecord(content) {
     var timestamp = new Date(content.timestamp);
