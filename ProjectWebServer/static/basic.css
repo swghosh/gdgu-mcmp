@@ -38,7 +38,7 @@ div.top.smaller {
 }
 
 div.citation {
-    font-size: 0.5em;
+    font-size: 0.65em;
     color: #888;
     padding: 1%;
 }
@@ -52,7 +52,7 @@ sup.badge {
 
 div.content {
     min-height: 80vh;
-    padding: 1%;
+    padding: 2.5%;
 }
 div.content.nonzeroscroll {
     margin-top: 9em;
@@ -68,7 +68,7 @@ div.foot {
 ul.mainmenu {
     list-style-type: none;
     text-align: center;
-    margin: 0;
+    margin: 2em;
     padding: 0;
 }
 ul.mainmenu li {
@@ -83,7 +83,8 @@ ul.mainmenu li {
     box-shadow: 0 0 10px #888;
 }
 ul.mainmenu li:hover {
-    border-right: 1em solid teal;
+    box-shadow: 0 0 20px #888;
+    background-color: #2090b2;
 }
 
 #map {
