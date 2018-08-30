@@ -10,5 +10,5 @@ const mongoConnectUrl = process.env.DATABASE_URL || process.env.DATABASE_URL_XDE
 module.exports = (dbTask) => {
     if(typeof dbTask !== 'function') throw new TypeError(`first argument dbTask must be a function(err, db), ${typeof dbTask} found`);
     // create a mongo client to perform a database task
-    var client = MongoClient.connect(mongoConnectUrl, dbTask);
+    var client = MongoClient.connect(mongoConnectUrl, {useNewUrlParser: true}, dbTask);
 };
