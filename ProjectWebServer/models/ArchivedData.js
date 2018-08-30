@@ -1,14 +1,22 @@
 var dbConnect = require('../lib/dbconnect')
 
 const collectionName = 'sensorData'
-const arrayLimit = 50
+const defaultArrayLimit = 50
 
-exports.getSensorData = (sensorChannel, callback) => {
+/**
+ * 
+ * @param {*} sensorChannel must include either name and or id property
+ * @param {*} options may include limited and or limit property
+ * @param {*} callback must be a single argument function
+ */
+exports.getSensorData = (sensorChannel, options, callback) => {
+
+    var arrayLimit = (options.limited) ? ((options.limit) ? options.limit : defaultArrayLimit) : 0
+
     var querySensorChannel = Object.keys(sensorChannel).map((key) => {
         var newKey = 'sensorChannel.' + key
         return [newKey, sensorChannel[key]]
-    })
-    .reduce((previous, current) => {
+    }).reduce((previous, current) => {
         var key, value
         [key, value] = current
         previous[key] = value
@@ -18,7 +26,7 @@ exports.getSensorData = (sensorChannel, callback) => {
     dbConnect((err, dbLink) => {
         if(err) {
             callback({
-                "error": "database connection failed"
+                "error": "service unavailable"
             })
         }
         else {
