@@ -48,6 +48,7 @@ div.label {
     background-color: rgb(60, 74, 75);
     color: white;
     border-radius: 15px;
+    transition: 0.5s;
 }
 div.label.larger {
     margin-top: -30px;
@@ -55,4 +56,8 @@ div.label.larger {
     margin-left: 40px;
     font-size: 1.3em;
     background-color: rgb(8, 36, 58);
+}
+div.label:hover {
+    background-color: #2090b2;
+    box-shadow: 0 0 10px gray;
 }
