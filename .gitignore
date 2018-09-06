@@ -2,3 +2,6 @@ __pycache__
 .vscode
 authfile*
 node_modules
+.ipynb*
+*.yaml
+.gcloudignore

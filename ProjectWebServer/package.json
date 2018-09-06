@@ -5,7 +5,7 @@
   "main": "webserver.js",
   "scripts": {
     "start": "node webserver.js",
-    "deploy": "heroku container:push web --app gdgu-env-net && heroku container:release web --app gdgu-env-net"
+    "deploy": "gcloud app deploy"
   },
   "repository": {
     "type": "git",
