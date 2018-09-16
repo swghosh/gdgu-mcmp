@@ -1,4 +1,5 @@
 var dbConnect = require('../lib/dbconnect')
+var objectFormatters = require('../lib/objectformatters')
 
 const collectionName = 'sensorData'
 const keys = [ 
@@ -8,10 +9,6 @@ const keys = [
     'sensorChannel',
     'sensorData' 
 ]
-
-const objectFormatterA = anObject => Object.values(anObject).join(' ')
-const objectFormatterB = anObject => Object.keys(anObject).map(key => `${key} ${objectFormatterA(anObject[key])}`).join('; ')
-
 
 exports.serve = (request, response) => {
     response.writeHead(200, {
@@ -34,8 +31,8 @@ exports.serve = (request, response) => {
 
                 delete dataItem._id
 
-                dataItem.sensorChannel = objectFormatterA(dataItem.sensorChannel)
-                dataItem.sensorData = objectFormatterB(dataItem.sensorData)
+                dataItem.sensorChannel = objectFormatters.objectFormatterA(dataItem.sensorChannel)
+                dataItem.sensorData = objectFormatters.objectFormatterB(dataItem.sensorData)
 
                 response.write(Object.values(dataItem).join(',') + '\n')
             })
