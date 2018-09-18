@@ -1,14 +1,16 @@
 from views import index
-# from views import live
-# from views import archived
+from views import live
+from views import archived
 
 def serve(environ):
     
     path = environ['PATH_INFO']
     status = '200 OK'
 
-    if path.startswith('/live/') or path.startswith('/archived/'):
-        data = 'This module isnt working at the moment.'
+    if path.startswith('/live/'):
+        data = live.view()
+    elif path.startswith('/archived/'):
+        data = archived.view()
     elif path == '/':
         data = index.view()
     else:
