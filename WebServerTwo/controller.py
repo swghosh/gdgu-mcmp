@@ -1,6 +1,7 @@
 from views import index
 from views import live
 from views import archived
+from views import error
 
 def serve(environ):
     
@@ -14,7 +15,7 @@ def serve(environ):
     elif path == '/':
         data = index.view()
     else:
-        data = 'Resource not available.'
+        data = error.view()
         status = '404 Not Found'
 
     headers = [
