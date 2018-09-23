@@ -1,24 +1,30 @@
 from views import index
-from views import live
-from views import archived
 from views import error
+
+from views.live import data as livedata
+from views.archived import data as archiveddata
+
+import re
 
 def serve(environ):
     
     path = environ['PATH_INFO']
     status = '200 OK'
 
-    if path.startswith('/live/'):
-        data = live.view()
-    elif path.startswith('/archived/'):
-        data = archived.view()
-    elif path == '/':
-        data = index.view()
-    else:
-        data = error.view()
-        status = '404 Not Found'
-
     headers = [
         ('Content-Type', 'text/html')
     ]
+
+    # homepage index html
+    if path == '/':
+        data = index.view()
+    elif re.match('/live/data', path) is not None:
+        headers[0] = ('Content-Type', 'application/json')
+        data = livedata.view()
+    elif re.match('/archived/data', path) is not None:
+        headers[0] = ('Content-Type', 'application/json')
+        data = archiveddata.view()
+    else:
+        data = 'Not a valid page.'
+
     return data, headers, status
