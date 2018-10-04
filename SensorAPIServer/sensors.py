@@ -6,10 +6,6 @@ Python module containing the following functions:
         of the format:
         { 
             timestamp: isoDateString, latitude: coordinate, longitude: coordinate, 
-            sensorChannel: {
-                name: nameString,
-                id: idString
-            },
             senorData: {
                 parameter1: {
                     value: numericValue1,
@@ -35,12 +31,11 @@ gdguCoordinates = {
     'lng': 77.0636767
 }
 
-def mockedSensor(sensorChannel, parameters):
+def mockedSensor(parameters):
     mock = {
         'timestamp': str(datetime.now().isoformat()),
         'latitude': gdguCoordinates['lat'],
         'longitude': gdguCoordinates['lng'],
-        'sensorChannel': sensorChannel,
         'sensorData': dict(
             map(lambda parameter: (parameter, {
                 'value': int(random() * 1000),
