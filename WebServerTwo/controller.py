@@ -4,6 +4,8 @@ from views import error
 from views.live import data as livedata
 from views.archived import data as archiveddata
 
+from views.archived import graph as archivedgraph
+
 import preset
 
 import re
@@ -46,7 +48,10 @@ def serve(environ):
 
     # archived graph html
     elif not re.match(paths[3], path) is None:
-        data = 'Not implemented yet.'
+        matches = re.match(paths[3], path)
+        kind = matches.group(1)
+        data = onPresetMatch(kind, archivedgraph.view, error.view, jsonFlag = False)
+
 
     # live map html
     elif not re.match(paths[4], path) is None:
