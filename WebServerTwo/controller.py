@@ -59,10 +59,13 @@ def serve(environ):
 
     return data, headers, status
 
-def onPresetMatch(kind, successAction, failAction):
+def onPresetMatch(kind, successAction, failAction, jsonFlag = True):
     # kind matches preset
     if preset.preset.__contains__(kind):
         return successAction(kind)
     # no such preset
     else:
-        return failAction('json', 'no such preset')
+        if jsonFlag:
+            return failAction('json', 'no such preset')
+        else:
+            return failAction('html', 'no such preset')
