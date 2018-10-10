@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 databaseUrl = os.environ['DATABASE_URL']
 databaseName = os.environ['DATABASE_NAME']
-collectionName = 'sensorData'
+collectionName = 'archivedSensorData'
 
 hardLimit = 50
 
@@ -12,8 +12,9 @@ def get(query = {}):
     db = client[databaseName]
 
     sensorData = []
-    for data in db[collectionName].find(query).limit(hardLimit):
+    for data in db[collectionName].find(query).sort('timestamp', -1).limit(hardLimit):
         data.pop('_id')
         sensorData.append(data)
 
-    return sensorData
+    # reverse the list
+    return sensorData[::-1]

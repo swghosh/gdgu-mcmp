@@ -1,3 +1,5 @@
+// expects variable kind to be set by any external script
+
 var xhttp = new XMLHttpRequest()
 xhttp.open("GET", "/archived/data/" + kind, true)
 
