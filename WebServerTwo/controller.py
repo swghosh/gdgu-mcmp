@@ -5,6 +5,7 @@ from views.live import data as livedata
 from views.archived import data as archiveddata
 
 from views.archived import graph as archivedgraph
+from views.live import map as livemap
 
 import preset
 
@@ -55,7 +56,9 @@ def serve(environ):
 
     # live map html
     elif not re.match(paths[4], path) is None:
-        data = 'Not implemented yet.'
+        matches = re.match(paths[4], path)
+        kind = matches.group(1)
+        data = onPresetMatch(kind, livemap.view, error.view, jsonFlag = False)
 
     # not found html
     else:
