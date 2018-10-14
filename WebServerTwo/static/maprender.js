@@ -32,7 +32,7 @@ function initMap() {
     });
 
     var infoWindow = new google.maps.InfoWindow({
-        content: "At " + content.timestamp + " " + kind + " was " + content[kind].value + content[kind].unit + "."
+        content: "At " + content.timestamp + " " + kind + " was " + content.sensorData[kind].value + content.sensorData[kind].unit + "."
     });
     marker.addListener('click', function() {
         infoWindow.open(map, marker);
