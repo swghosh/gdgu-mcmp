@@ -1,17 +1,16 @@
 import os
-from urllib import request
-import json
+from pymongo import MongoClient
 
-sensorServerUrl = os.environ['SENSOR_SERVER_URL']
+databaseUrl = os.environ['DATABASE_URL']
+databaseName = os.environ['DATABASE_NAME']
+collectionName = 'liveSensorData'
+
+hardLimit = 2
 
 def get(query = {}):
-    jsonReceived = request.urlopen(sensorServerUrl).read().decode('utf-8')
-    sensorData = json.loads(jsonReceived)
+    client = MongoClient(databaseUrl)
+    db = client[databaseName]
 
-    for key in query:
-        [rcChannel, rcName] = key.split('.')
-        rcValue = query[key]
-
-        sensorData = list(filter(lambda data: data[rcChannel][rcName] == rcValue, sensorData))
-
-    return sensorData
+    return [telemetryData['data'] 
+        for telemetryData in db[collectionName].find(query).sort('$natural', -1).limit(hardLimit)
+    ]

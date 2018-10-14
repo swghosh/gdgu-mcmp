@@ -1,7 +1,9 @@
 __pycache__
 .vscode
-authfile*
+authfile.json
 node_modules
 .ipynb*
 *.yaml
 .gcloudignore
+*.pem
+credentials.json
