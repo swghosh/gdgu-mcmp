@@ -17,7 +17,7 @@ function initMap() {
             lat: content.latitude,
             lng: content.longitude
         },
-        zoom: 13,
+        zoom: 16,
         mapTypeId: 'terrain'
     });
 
@@ -25,14 +25,31 @@ function initMap() {
         lat: content.latitude,
         lng: content.longitude
     };
+    
+    var radius = (content.accuracy > 150) ? content.accuracy : 150;
+
+    var circle = new google.maps.Circle({
+        radius: content.accuracy,
+        map: map,
+        center: place,
+        strokeColor: '#006eff',
+        strokeOpacity: '0.45',
+        fillColor: '#006eff',
+        fillOpacity: '0.35',
+        strokeWeight: 2
+    })
     var marker = new google.maps.Marker({
         position: place,
         map: map,
-        title: "GD Goenka University"
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            strokeColor: 'ff0077',
+            strokeWeight: 10,
+            scale: 10
+        }
     });
-
     var infoWindow = new google.maps.InfoWindow({
-        content: "At " + content.timestamp + " " + kind + " was " + content.sensorData[kind].value + content.sensorData[kind].unit + "."
+        content: "<h2>" + new Date(content.timestamp).toLocaleString() + "</h2> <p><b>" + kind + ":</b> <u>" + content.sensorData[kind].value + content.sensorData[kind].unit + "</u></p>"
     });
     marker.addListener('click', function() {
         infoWindow.open(map, marker);
