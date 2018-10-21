@@ -1,16 +1,13 @@
 from datetime import datetime
-
-# GDGU co-ordinates
-LATITUDE = 28.2699415
-LONGITUDE = 77.0636767
-ACCURACY = 100
+import geolocation
 
 def getData(kind = 'default'):
+    location = geolocation.geolocation()
     return {
         'timestamp': datetime.utcnow().isoformat(),
-        'latitude': LATITUDE,
-        'longitude': LONGITUDE,
-        'accuracy': ACCURACY,
+        'latitude': location['location']['lat'],
+        'longitude': location['location']['lng'],
+        'accuracy': location['accuracy'],
         'sensorData': {
             kind: {
                 'value': 100,
