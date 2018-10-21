@@ -1,4 +1,4 @@
-# import wifi, json, request
+# import modules wifi, json, request
 from wifi import Cell
 from urllib import request
 import json
@@ -15,7 +15,7 @@ with open('authfile.json') as authFile:
     contents = authFile.read()
     API_KEY = json.loads(contents)['googleGeolocationAPIKey']
 
-def geolocation():
+def geolocation(verbose = True):
     # construct the API accessible URL with the key
     geolocationApiAccessUrl = API_URL + '?key=' + API_KEY
 
@@ -36,11 +36,25 @@ def geolocation():
     postData = json.dumps(toBeSent).encode('utf-8')
     headers = {'Content-Type': 'application/json'}
 
+    # print some info regarding the request
+    if verbose:
+        print('Request:')
+        print('---------')
+        print("POST", API_URL + "?key=xxxxx")
+        print(postData.decode('utf-8'), end = '\n\n')
+
     # prepare and send the HTTP request
     apiRequest = request.Request(geolocationApiAccessUrl, postData, headers = headers)
     res = request.urlopen(apiRequest)
 
     # receive the response after the request
     apiResponse = res.read().decode('utf-8')
+
+    # print some info regarding the response
+    if verbose:
+        print('Response:')
+        print('---------')
+        print(apiResponse)
+
     # parse the JSON and return it
     return json.loads(apiResponse)
