@@ -25,8 +25,6 @@ function initMap() {
         lat: content.latitude,
         lng: content.longitude
     };
-    
-    var radius = (content.accuracy > 150) ? content.accuracy : 150;
 
     var circle = new google.maps.Circle({
         radius: content.accuracy,

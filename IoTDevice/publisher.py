@@ -74,7 +74,7 @@ try:
 
     # publish the message
     while datetime.datetime.utcnow() < expirationTime:
-        sensorData = [sensordata.getData('soilMoist'), sensordata.getData('coTwoConc')]
+        sensorData = sensordata.getData()
         for data in sensorData:
             telemetryData = json.dumps(data)
             print('Publishing telemetry data: \n', telemetryData)

@@ -7,6 +7,8 @@ from views.archived import data as archiveddata
 from views.archived import graph as archivedgraph
 from views.live import map as livemap
 
+from views.archived import csv as archivedcsv
+
 import preset
 
 import re
@@ -17,7 +19,7 @@ paths = [
     r'^/live/data/(\w+)$',
     r'^/archived/graph/(\w+)$',
     r'^/live/map/(\w+)$',
-    r'^/archived/csv/(\w+)$'
+    r'^/archived/csv/(\w+).csv$'
 ]
 
 def serve(environ):
@@ -59,6 +61,13 @@ def serve(environ):
         matches = re.match(paths[4], path)
         kind = matches.group(1)
         data = onPresetMatch(kind, livemap.view, error.view, jsonFlag = False)
+
+    # archived data csv
+    elif not re.match(paths[5], path) is None:
+        matches = re.match(paths[5], path)
+        kind = matches.group(1)
+        headers[0] = ('Content-Type', 'application/csv')
+        data = onPresetMatch(kind, archivedcsv.view, error.view)
 
     # not found html
     else:
