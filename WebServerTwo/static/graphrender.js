@@ -20,5 +20,5 @@ function chartIt() {
         return item.sensorData[kind].value
     })
 
-    chartGenerate(kind + ' (' + items[0].sensorData[kind].unit + ')', labels, values)
+    chartGenerate(extendedKind + ' (' + items[0].sensorData[kind].unit + ')', labels, values)
 }

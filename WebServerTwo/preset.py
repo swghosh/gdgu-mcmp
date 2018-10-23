@@ -6,6 +6,6 @@
 '''
 
 preset = {
-    'soilMoist': 'Soil Moisture Index',
+    'soilMoist': 'Soil Moisture',
     'airQualIndex': 'Air Quality Index'
 }

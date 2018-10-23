@@ -47,7 +47,7 @@ function initMap() {
         }
     });
     var infoWindow = new google.maps.InfoWindow({
-        content: "<h2>" + new Date(content.timestamp).toLocaleString() + "</h2> <p><b>" + kind + ":</b> <u>" + content.sensorData[kind].value + content.sensorData[kind].unit + "</u></p>"
+        content: "<h2>" + new Date(content.timestamp).toLocaleString() + "</h2> <p><b>" + extendedKind + ":</b> <u>" + content.sensorData[kind].value + content.sensorData[kind].unit + "</u></p>"
     });
     marker.addListener('click', function() {
         infoWindow.open(map, marker);
